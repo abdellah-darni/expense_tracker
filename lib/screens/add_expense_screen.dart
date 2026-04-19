@@ -1,4 +1,5 @@
 import 'package:expense_tracker/enums/expense_category.dart';
+import 'package:expense_tracker/enums/payment_method.dart';
 import 'package:expense_tracker/widgets/category_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
 
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _noteController = TextEditingController();
 
   ExpenseCategory _selectedCategory = ExpenseCategory.food;
 
@@ -26,6 +28,25 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
     ExpenseCategory.bills: Icons.receipt_long,
     ExpenseCategory.other: Icons.more_horiz,
   };
+
+  PaymentMethod _selectedPayment = PaymentMethod.cash;
+
+  DateTime _selectedDate = DateTime.now();
+
+  void _presentDatePicker() async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: DateTime(2020), 
+      lastDate: DateTime.now(),  
+    );
+
+    if (pickedDate != null) {
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +147,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
 
               SizedBox(height: 20,),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -165,7 +186,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(vertical:  0.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -191,48 +212,196 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 ),
               ),
 
-              const SizedBox(height: 10),
+              // const SizedBox(height: 10),
 
               SizedBox(
                 height: 110,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    CategoryCard(
-                      label: "Food", 
-                      icon: Icons.restaurant, 
-                      isSelected: _selectedCategory == ExpenseCategory.food,
-                      onTap: () {
-                        setState(() {
-                          _selectedCategory = ExpenseCategory.food;
-                        });
-                      },
-                    ),
+                  children: ExpenseCategory.values.map((category) {
+                    String labelName = category.name[0].toUpperCase() + category.name.substring(1);
 
-                    CategoryCard(
-                      label: "Work", 
-                      icon: Icons.work, 
-                      isSelected: _selectedCategory == ExpenseCategory.work,
+                    return CategoryCard(
+                      label: labelName, 
+                      icon: categoryIcons[category] ?? Icons.category , 
+                      isSelected: _selectedCategory == category, 
                       onTap: () {
                         setState(() {
-                          _selectedCategory = ExpenseCategory.work;
+                          _selectedCategory = category;
                         });
-                      },
-                    ),
+                      }
+                    );
+                  }).toList(),
+                ),
+              ),
 
-                    CategoryCard(
-                      label: "Bills", 
-                      icon: Icons.receipt_long, 
-                      isSelected: _selectedCategory == ExpenseCategory.bills,
-                      onTap: () {
-                        setState(() {
-                          _selectedCategory = ExpenseCategory.bills;
-                        });
-                      },
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "DATE",
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.2,
                     ),
-                  ],
+                  ),
+                ),
+              ),
+
+
+              const SizedBox(height: 0),
+              
+              InkWell(
+                onTap: _presentDatePicker,
+                borderRadius: BorderRadius.circular(16),
+                child: Container(
+                  height: 55,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withValues(alpha: 0.08),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.calendar_today_outlined,
+                        color: Colors.grey.withValues(alpha: 0.6),
+                        size: 20,
+                      ),
+                      const SizedBox(width: 12),
+                      
+                      Expanded(
+                        child: Text(
+                          "${_selectedDate.month}/${_selectedDate.day}/${_selectedDate.year}",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                      
+                      Icon(
+                        Icons.calendar_month,
+                        color: Colors.black87.withValues(alpha: 0.8),
+                        size: 20,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "PAYMENT METHOD",
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+
+              DropdownButtonFormField(
+                initialValue: _selectedPayment,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey.withValues(alpha: 0.08),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: BorderSide.none,
+                  ),
+                  prefixIcon: Icon(
+                    Icons.credit_card,
+                    color: Colors.grey.withValues(alpha: 0.6),
+                  ),
+                ),
+
+                icon: const Icon(Icons.keyboard_arrow_down),
+
+                items: PaymentMethod.values.map((method) {
+                  String lableName = method.name[0].toUpperCase() + method.name.substring(1);
+                  return DropdownMenuItem(
+                    value: method,
+                    child: Text(lableName)
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  if (value != null){
+                    setState(() {
+                      _selectedPayment = value;
+                    });
+                  }
+                }
+              ),
+
+              const SizedBox(height: 20),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "ADD A NOTE",
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 8),
+
+              TextField(
+                controller: _noteController,
+                maxLines: 1,
+                textCapitalization: TextCapitalization.sentences,
+                style: const TextStyle(color: Colors.black87),
+                decoration: InputDecoration(
+                  hintText: "Additional details or receipt notes...",
+                  hintStyle: TextStyle(
+                    color: Colors.grey.withValues(alpha: 0.4),
+                  ),
+                  filled: true,
+                  fillColor: Colors.grey.withValues(alpha: 0.08),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              SizedBox(
+                width: double.infinity,
+                height: 55,
+                child: ElevatedButton.icon(
+                  onPressed: (){}, 
+                  icon: const Icon(
+                    Icons.check_circle,
+                    color: Colors.white,
+                  ),
+                  label: const Text(
+                    "Save Expense",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 60, 78, 97), 
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    elevation: 0,
+                  ),
                 ),
               )
+
             ],
           ),
       ),
