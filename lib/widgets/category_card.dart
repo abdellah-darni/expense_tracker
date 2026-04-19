@@ -24,7 +24,7 @@ class CategoryCard extends StatelessWidget{
                 height: 100,
                 margin: const EdgeInsets.only(right: 12),
                 decoration: BoxDecoration(
-                    color: isSelected ? const Color.fromARGB(255, 179, 255, 204) : Colors.blueGrey[50],
+                    color: isSelected ? const Color(0xFF97F6C7) : Colors.white,
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                         BoxShadow(
@@ -46,7 +46,7 @@ class CategoryCard extends StatelessWidget{
                             child: Icon(
                                 icon,
                                 size: 30,
-                                color: isSelected ? Colors.green[800] : Colors.black,
+                                color: isSelected ? const Color(0xFF00734F) : const Color(0xFF171C20),
                             ),
                         ),
                         const SizedBox(height: 12,),
@@ -55,7 +55,7 @@ class CategoryCard extends StatelessWidget{
                             style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                                color: isSelected ? Colors.green[900] : Colors.black,
+                                color: isSelected ? const Color(0xFF00734F) : const Color(0xFF171C20),
                             ),
                         )
                     ],

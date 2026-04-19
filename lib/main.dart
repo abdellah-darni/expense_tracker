@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp( 
       theme: ThemeData(
-        textTheme: GoogleFonts.interTextTheme()
+        textTheme: GoogleFonts.interTextTheme(),
+        scaffoldBackgroundColor: const Color(0xFFF6FAFF),
       ),
       home: AddExpenseScreen()
       );
