@@ -1,4 +1,5 @@
 import 'package:expense_tracker/helper/database_helper.dart';
+import 'package:expense_tracker/screens/add_expense_screen.dart';
 import 'package:expense_tracker/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.interTextTheme()
       ),
-      home: Dashboard()
+      home: AddExpenseScreen()
       );
     }
 }
