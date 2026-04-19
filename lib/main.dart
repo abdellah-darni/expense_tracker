@@ -1,8 +1,18 @@
+import 'package:expense_tracker/helper/database_helper.dart';
 import 'package:expense_tracker/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    await DatabaseHelper.instance.database;
+    print("DATABASE CREATED SUCCESSFULLY!");
+  } catch (e) {
+    print("ERROR CREATING DATABASE: $e");
+  }
+
   runApp(const MyApp());
 }
 
