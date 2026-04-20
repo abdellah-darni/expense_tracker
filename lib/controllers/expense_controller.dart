@@ -3,20 +3,28 @@ import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/services/expense_service.dart';
 import 'package:flutter/cupertino.dart';
 
-class ExpenseController {
+class ExpenseController extends ChangeNotifier {
   final ExpenseService _expenseService = ExpenseService();
 
   List<Expense> _expenses = [];
+  bool _isLoading = false;
 
   List<Expense> get expenses => _expenses;
 
   Future<void> loadExpenses() async {
+    _isLoading = true;
+    notifyListeners();
+
     _expenses = await _expenseService.getAllExpenses();
+
+    _isLoading = false;
+    notifyListeners();
   }
 
   Future<void> addExpense(Expense newExpense) async {
     _expenseService.insertExpense(newExpense);
     _expenses.insert(0, newExpense);
+    notifyListeners();
   }
 
   double get monthlySpend {

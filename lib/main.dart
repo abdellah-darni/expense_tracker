@@ -1,6 +1,9 @@
+import 'package:expense_tracker/controllers/expense_controller.dart';
 import 'package:expense_tracker/helper/database_helper.dart';
 import 'package:expense_tracker/screens/add_expense_screen.dart';
 import 'package:expense_tracker/screens/dashboard_screen.dart';
+import 'package:path/path.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,7 +17,12 @@ Future<void> main() async {
     print("ERROR CREATING DATABASE: $e");
   }
 
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ExpenseController()..loadExpenses(),
+      child: const MyApp()
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {

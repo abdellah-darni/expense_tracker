@@ -1,5 +1,8 @@
 import 'package:expense_tracker/controllers/expense_controller.dart';
+import 'package:expense_tracker/screens/add_expense_screen.dart';
+import 'package:expense_tracker/widgets/breakdown_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -9,10 +12,10 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  ExpenseController expenseController = ExpenseController();
 
   @override
   Widget build(BuildContext context) {
+    final expenseController = context.watch<ExpenseController>();
     return Scaffold(
       backgroundColor: const Color(0xFFF6FAFF),
       appBar: AppBar(
@@ -150,26 +153,59 @@ class _DashboardState extends State<Dashboard> {
               SizedBox(height: 15,),
 
               SizedBox(
-                width: 140,
+                height: 140,
                 child: expenseController.monthlyCategorySpending.isEmpty
                   ? const Center(child: Text("No expense this month!"))
                   : ListView(
                     scrollDirection: Axis.horizontal,
+                    children: expenseController.monthlyCategorySpending.entries.map((entry) {
+                      final category = entry.key;
+                      final amount = entry.value;
+
+                      final persentage = expenseController.monthlySpend == 0
+                        ? 0.0
+                        : (amount / expenseController.monthlySpend);
+                      
+                      String lableName = category.name[0].toUpperCase() + category.name.substring(1);
+
+                      IconData icon = Icons.restaurant;
+                      Color color = Colors.deepOrange;
+
+                      return BreakdownCard(title: lableName, persentage: persentage, icon: icon, color: color);
+                    }).toList(),
                   ),
               )
               // Row
           ],
         ),
       ),
-      floatingActionButton: SizedBox(
-        width: 70,
-        height: 70,
+      floatingActionButton: Container(
+        width: 65,
+        height: 65,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: LinearGradient(
+            colors: [Color.fromARGB(255, 31, 48, 64), Color.fromARGB(255, 72, 105, 117)]
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 15,
+              offset: Offset(0, 8)
+            )
+          ]
+        ),
         child: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: Color(0xFF324A5F),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AddExpenseScreen())
+            );
+          },
+          backgroundColor: Colors.transparent,
           elevation: 0,
           shape: const CircleBorder(),
-          child: Icon(Icons.add),
+          child: Icon(Icons.add, color: Colors.white, size: 32,),
         ),
       ),
     );

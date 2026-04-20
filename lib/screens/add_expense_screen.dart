@@ -5,6 +5,7 @@ import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/category_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class AddExpenseScreen extends StatefulWidget {
@@ -15,8 +16,6 @@ class AddExpenseScreen extends StatefulWidget {
 }
 
 class _AddExpenseScreenState extends State<AddExpenseScreen> {
-
-  ExpenseController _expenseController = ExpenseController();
 
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
@@ -70,8 +69,9 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
       note: _noteController.text.isEmpty ? null : _noteController.text,
     );
 
-    _expenseController.addExpense(newExpense);
-
+    context.read<ExpenseController>().addExpense(newExpense);
+    
+    Navigator.pop(context);
   }
 
   @override
@@ -89,7 +89,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
           onPressed: () {
-              
+              Navigator.pop(context);
           },
         ),
 
