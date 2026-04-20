@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.interTextTheme(),
         scaffoldBackgroundColor: const Color(0xFFF6FAFF),
       ),
-      home: AddExpenseScreen()
+      home: Dashboard()
       );
     }
 }
