@@ -161,6 +161,17 @@ class _DashboardState extends State<Dashboard> {
           ],
         ),
       ),
+      floatingActionButton: SizedBox(
+        width: 70,
+        height: 70,
+        child: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Color(0xFF324A5F),
+          elevation: 0,
+          shape: const CircleBorder(),
+          child: Icon(Icons.add),
+        ),
+      ),
     );
   }
 }
