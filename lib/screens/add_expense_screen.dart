@@ -411,7 +411,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   width: double.infinity,
                   height: 55,
                   child: ElevatedButton.icon(
-                    onPressed: (){}, 
+                    onPressed: _saveExpense,
                     icon: const Icon(
                       Icons.check_circle,
                       color: Colors.white,
