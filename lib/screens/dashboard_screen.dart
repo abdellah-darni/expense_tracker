@@ -19,27 +19,6 @@ class _DashboardState extends State<Dashboard> {
     final expenseController = context.watch<ExpenseController>();
     return Scaffold(
       backgroundColor: const Color(0xFFF6FAFF),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFF6FAFF),
-        title: const Text(
-          "The Fluid Accountant",
-          style: TextStyle(
-              fontWeight: FontWeight.w700,
-          ),
-        ),
-        leading: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: CircleAvatar(
-            backgroundImage: AssetImage("assets/avatar.jpg"),
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () => print("somthing"),
-            icon: const Icon(Icons.settings, color: Color(0xFF171C20),)
-            )
-        ],
-      ),
       body: Column(
         children: [
             SizedBox(height: 20,),

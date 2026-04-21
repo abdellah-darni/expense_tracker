@@ -24,6 +24,28 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(246, 250, 255, 1),
 
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFF6FAFF),
+        title: const Text(
+          "The Fluid Accountant",
+          style: TextStyle(
+              fontWeight: FontWeight.w700,
+          ),
+        ),
+        leading: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: CircleAvatar(
+            backgroundImage: AssetImage("assets/avatar.jpg"),
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () => print("somthing"),
+            icon: const Icon(Icons.settings, color: Color(0xFF171C20),)
+            )
+        ],
+      ),
+
       body: _pages[_selectedIndex],
 
       floatingActionButton: Container(
