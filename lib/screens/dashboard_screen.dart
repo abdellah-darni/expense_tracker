@@ -40,12 +40,12 @@ class _DashboardState extends State<Dashboard> {
             )
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          children: [
-              SizedBox(height: 20,),
-              Container(
+      body: Column(
+        children: [
+            SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
                 width: double.infinity,
                 height: 200,
                 decoration: BoxDecoration(
@@ -129,8 +129,11 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
-              Row(
+            ),
+            SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -151,9 +154,12 @@ class _DashboardState extends State<Dashboard> {
                   )
                 ],
               ),
-              SizedBox(height: 15,),
-
-              SizedBox(
+            ),
+            SizedBox(height: 15,),
+      
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: SizedBox(
                 height: 140,
                 child: expenseController.monthlyCategorySpending.isEmpty
                   ? const Center(child: Text("No expense this month!"))
@@ -162,19 +168,22 @@ class _DashboardState extends State<Dashboard> {
                     children: expenseController.monthlyCategorySpending.entries.map((entry) {
                       final category = entry.key;
                       final amount = entry.value;
-
+                    
                       final persentage = expenseController.monthlySpend == 0
                         ? 0.0
                         : (amount / expenseController.monthlySpend);
-
+                    
                       return BreakdownCard(title: category.displayName, persentage: persentage, icon: category.icon, color: category.color);
                     }).toList(),
                   ),
               ),
-
-              const SizedBox(height: 15,),
-
-              Row(
+            ),
+      
+            const SizedBox(height: 15,),
+      
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -195,57 +204,31 @@ class _DashboardState extends State<Dashboard> {
                   )
                 ],
               ),
-              const SizedBox(height: 15),
-
-              if (expenseController.recentActivity.isEmpty)
-                const Center(
-                  child: Padding(padding: EdgeInsets.all(20), child: Text("No expenses in the last 7 days!"),),
-                )
-              else 
-                ...expenseController.recentActivity.map((expense) {
-                  final category = expense.category;
-                  final monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                  final dateString = "${category.displayName} • ${monthNames[expense.date.month - 1]} ${expense.date.day}";
-
-                  return TransactionTile(
+            ),
+            const SizedBox(height: 14),
+      
+            if (expenseController.recentActivity.isEmpty)
+              const Center(
+                child: Padding(padding: EdgeInsets.all(20), child: Text("No expenses in the last 7 days!"),),
+              )
+            else 
+              ...expenseController.recentActivity.map((expense) {
+                final category = expense.category;
+                final monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                final dateString = "${category.displayName} • ${monthNames[expense.date.month - 1]} ${expense.date.day}";
+      
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: TransactionTile(
                     title: expense.description,
                     subtitle: dateString,
                     amount: expense.amount,
                     icon: category.icon,
                     color: category.color,
-                  );
-                })
-          ],
-        ),
-      ),
-      floatingActionButton: Container(
-        width: 65,
-        height: 65,
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: LinearGradient(
-            colors: [Color.fromARGB(255, 31, 48, 64), Color.fromARGB(255, 72, 105, 117)]
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black26,
-              blurRadius: 15,
-              offset: Offset(0, 8)
-            )
-          ]
-        ),
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const AddExpenseScreen())
-            );
-          },
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          shape: const CircleBorder(),
-          child: Icon(Icons.add, color: Colors.white, size: 32,),
-        ),
+                  ),
+                );
+              })
+        ],
       ),
     );
   }
