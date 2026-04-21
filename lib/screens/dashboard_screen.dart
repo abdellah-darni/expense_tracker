@@ -165,13 +165,8 @@ class _DashboardState extends State<Dashboard> {
                       final persentage = expenseController.monthlySpend == 0
                         ? 0.0
                         : (amount / expenseController.monthlySpend);
-                      
-                      String lableName = category.name[0].toUpperCase() + category.name.substring(1);
 
-                      IconData icon = Icons.restaurant;
-                      Color color = Colors.deepOrange;
-
-                      return BreakdownCard(title: lableName, persentage: persentage, icon: icon, color: color);
+                      return BreakdownCard(title: category.displayName, persentage: persentage, icon: category.icon, color: category.color);
                     }).toList(),
                   ),
               )
