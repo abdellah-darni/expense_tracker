@@ -74,4 +74,17 @@ class ExpenseController extends ChangeNotifier {
 
     return Map.fromEntries(sortedMap);
   }
+
+  List<Expense> get recentActivity {
+    final now = DateTime.now();
+    final evenDaysAgo = now.subtract(const Duration(days: 7));
+
+    var recentList = _expenses.where((e) {
+      return e.date.isAfter(evenDaysAgo) || e.date.isAtSameMomentAs(evenDaysAgo);
+    }).toList();
+
+    recentList.sort((a, b) => b.date.compareTo(a.date));
+
+    return recentList.take(2).toList();
+  }
 }
