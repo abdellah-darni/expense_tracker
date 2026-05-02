@@ -193,7 +193,10 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   controller: _descriptionController,
                   textCapitalization: TextCapitalization.sentences,
                   keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.shadow),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Theme.of(context).colorScheme.shadow,
+                  ),
                   decoration: InputDecoration(
                     hintText: "What did you buy?",
                     hintStyle: TextStyle(
@@ -307,7 +310,9 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
 
                       Icon(
                         Icons.calendar_month,
-                        color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.8),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.shadow.withValues(alpha: 0.8),
                         size: 20,
                       ),
                     ],
@@ -406,7 +411,10 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 height: 55,
                 child: ElevatedButton.icon(
                   onPressed: _saveExpense,
-                  icon: Icon(Icons.check_circle, color: Theme.of(context).colorScheme.surface),
+                  icon: Icon(
+                    Icons.check_circle,
+                    color: Theme.of(context).colorScheme.surface,
+                  ),
                   label: Text(
                     "Save Expense",
                     style: TextStyle(

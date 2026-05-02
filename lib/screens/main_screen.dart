@@ -37,7 +37,10 @@ class _MainScreenState extends State<MainScreen> {
         actions: [
           IconButton(
             onPressed: () => debugPrint("somthing"),
-            icon: Icon(Icons.settings, color: Theme.of(context).colorScheme.onSurface),
+            icon: Icon(
+              Icons.settings,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
           ),
         ],
       ),
@@ -75,7 +78,11 @@ class _MainScreenState extends State<MainScreen> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           shape: const CircleBorder(),
-          child: Icon(Icons.add, color: Theme.of(context).colorScheme.surface, size: 32),
+          child: Icon(
+            Icons.add,
+            color: Theme.of(context).colorScheme.surface,
+            size: 32,
+          ),
         ),
       ),
 

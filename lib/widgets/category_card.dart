@@ -23,11 +23,15 @@ class CategoryCard extends StatelessWidget {
         height: 100,
         margin: const EdgeInsets.only(right: 12),
         decoration: BoxDecoration(
-          color: isSelected ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.surface,
+          color: isSelected
+              ? Theme.of(context).colorScheme.secondary
+              : Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.05),
+              color: Theme.of(
+                context,
+              ).colorScheme.shadow.withValues(alpha: 0.05),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -40,8 +44,12 @@ class CategoryCard extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: isSelected
-                    ? Theme.of(context).colorScheme.surface.withValues(alpha: 0.5)
-                    : Theme.of(context).colorScheme.surface.withValues(alpha: 0.4),
+                    ? Theme.of(
+                        context,
+                      ).colorScheme.surface.withValues(alpha: 0.5)
+                    : Theme.of(
+                        context,
+                      ).colorScheme.surface.withValues(alpha: 0.4),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Icon(

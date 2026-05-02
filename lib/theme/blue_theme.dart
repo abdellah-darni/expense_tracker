@@ -17,7 +17,7 @@ class BlueTheme {
 
         primaryContainer: Color(0xFF1F3040), // Using this as Gradient Start
         secondaryContainer: Color(0xFF486975), // Using this as Gradient End
-      )
+      ),
     );
   }
 
@@ -29,15 +29,15 @@ class BlueTheme {
         displayColor: const Color(0xFFF6FAFF),
       ),
       colorScheme: const ColorScheme.dark(
-        primary: Color(0xFF5A809E), 
-        secondary: Color(0xFF97F6C7), 
-        surface: Color(0xFF121A21), 
-        onSurface: Color(0xFFF6FAFF), 
-        shadow: Colors.black54, 
+        primary: Color(0xFF5A809E),
+        secondary: Color(0xFF97F6C7),
+        surface: Color(0xFF121A21),
+        onSurface: Color(0xFFF6FAFF),
+        shadow: Colors.black54,
         tertiary: Color(0xFF24313D),
-        onTertiary: Color(0xFFA5B8C7), 
+        onTertiary: Color(0xFFA5B8C7),
 
-        primaryContainer: Color(0xFF1A2836), 
+        primaryContainer: Color(0xFF1A2836),
         secondaryContainer: Color(0xFF344D5E),
       ),
     );
