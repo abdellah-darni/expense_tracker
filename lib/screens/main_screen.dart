@@ -67,7 +67,9 @@ class _MainScreenState extends State<MainScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute<dynamic>(builder: (context) => const AddExpenseScreen()),
+              MaterialPageRoute<dynamic>(
+                builder: (context) => const AddExpenseScreen(),
+              ),
             );
           },
           backgroundColor: Colors.transparent,
