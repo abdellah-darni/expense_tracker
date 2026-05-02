@@ -3,8 +3,13 @@ name: Expense Tracker CI
 on:
     push:
         branches: ["main"]
+        tags:
+            - 'v*'
     pull_request: 
         branches: ["main"]
+
+permissions:
+  contents: write
 
 jobs:
     build:
@@ -28,3 +33,37 @@ jobs:
             
             - name: Analyze project structure and code quality
               run: flutter analyze --fatal-infos --fatal-warnings
+
+    release:
+        name: Build & Publish Release
+        needs: build 
+        if: startsWith(github.ref, 'refs/tags/v') 
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Java
+              uses: actions/setup-java@v4
+              with:
+                distribution: 'zulu'
+                java-version: '17'
+
+            - name: Set up Flutter
+              uses: subosito/flutter-action@v2
+              with:
+                channel: 'stable'
+                cache: true
+
+            - name: Install dependencies
+              run: flutter pub get
+
+            - name: Build Android APK
+              run: flutter build apk --release
+
+            - name: Publish to GitHub Releases
+              uses: softprops/action-gh-release@v2
+              with:
+                generate_release_notes: true
+                files: build/app/outputs/flutter-apk/app-release.apk
