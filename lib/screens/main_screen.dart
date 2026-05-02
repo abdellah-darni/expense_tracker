@@ -1,5 +1,6 @@
 import 'package:expense_tracker/screens/add_expense_screen.dart';
 import 'package:expense_tracker/screens/dashboard_screen.dart';
+import 'package:expense_tracker/screens/expense_history_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
     const Dashboard(),
-    const Center(child: Text("History Screen Coming Soon")),
+    const ExpenseHistoryScreen(),
     const Center(child: Text("Stats Screen Coming Soon")),
     const Center(child: Text("Profile Screen Coming Soon")),
   ];
