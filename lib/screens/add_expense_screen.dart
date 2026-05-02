@@ -59,7 +59,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
     }
 
     final newExpense = Expense(
-      id: Uuid().v4(),
+      id: const Uuid().v4(),
       amount: enterdAmount,
       description: enterdDesciption,
       category: _selectedCategory,
@@ -98,6 +98,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
             child: IconButton(
               icon: const Icon(Icons.help),
               onPressed: () {
+                // ignore: inference_failure_on_function_invocation
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -146,7 +147,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   ],
                   textAlign: TextAlign.center,
                   textAlignVertical: TextAlignVertical.center,
-                  style: TextStyle(fontSize: 25),
+                  style: const TextStyle(fontSize: 25),
                   decoration: InputDecoration(
                     hintText: "0.00",
                     hintStyle: TextStyle(
@@ -170,9 +171,9 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 color: Colors.grey.withValues(alpha: 0.5),
               ),
 
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
+              const SizedBox(height: 20),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -199,7 +200,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                       color: Colors.grey.withValues(alpha: 0.4),
                     ),
                     filled: true,
-                    fillColor: Color(0xFFF0F4F9),
+                    fillColor: const Color(0xFFF0F4F9),
 
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -257,8 +258,8 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 ),
               ),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 12),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -282,7 +283,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   height: 55,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
-                    color: Color(0xFFF0F4F9),
+                    color: const Color(0xFFF0F4F9),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Row(
@@ -333,7 +334,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 initialValue: _selectedPayment,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color(0xFFF0F4F9),
+                  fillColor: const Color(0xFFF0F4F9),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: BorderSide.none,
@@ -390,7 +391,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                     color: Colors.grey.withValues(alpha: 0.4),
                   ),
                   filled: true,
-                  fillColor: Color(0xFFF0F4F9),
+                  fillColor: const Color(0xFFF0F4F9),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: BorderSide.none,

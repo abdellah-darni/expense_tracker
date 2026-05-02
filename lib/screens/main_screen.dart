@@ -30,13 +30,13 @@ class _MainScreenState extends State<MainScreen> {
           "The Fluid Accountant",
           style: TextStyle(fontWeight: FontWeight.w700),
         ),
-        leading: Padding(
-          padding: const EdgeInsets.all(10.0),
+        leading: const Padding(
+          padding: EdgeInsets.all(10.0),
           child: CircleAvatar(backgroundImage: AssetImage("assets/avatar.jpg")),
         ),
         actions: [
           IconButton(
-            onPressed: () => print("somthing"),
+            onPressed: () => debugPrint("somthing"),
             icon: const Icon(Icons.settings, color: Color(0xFF171C20)),
           ),
         ],
@@ -67,13 +67,13 @@ class _MainScreenState extends State<MainScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AddExpenseScreen()),
+              MaterialPageRoute<dynamic>(builder: (context) => const AddExpenseScreen()),
             );
           },
           backgroundColor: Colors.transparent,
           elevation: 0,
           shape: const CircleBorder(),
-          child: Icon(Icons.add, color: Colors.white, size: 32),
+          child: const Icon(Icons.add, color: Colors.white, size: 32),
         ),
       ),
 

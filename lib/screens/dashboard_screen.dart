@@ -1,5 +1,4 @@
 import 'package:expense_tracker/controllers/expense_controller.dart';
-import 'package:expense_tracker/screens/add_expense_screen.dart';
 import 'package:expense_tracker/widgets/breakdown_card.dart';
 import 'package:expense_tracker/widgets/transaction_tile.dart';
 import 'package:flutter/material.dart';
@@ -20,14 +19,14 @@ class _DashboardState extends State<Dashboard> {
       backgroundColor: const Color(0xFFF6FAFF),
       body: Column(
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Container(
               width: double.infinity,
               height: 200,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
@@ -43,7 +42,7 @@ class _DashboardState extends State<Dashboard> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "MONTHLY SPENDING",
                       style: TextStyle(
                         color: Color.fromARGB(200, 159, 185, 211),
@@ -57,7 +56,7 @@ class _DashboardState extends State<Dashboard> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         // Icon(Icons.attach_money, color: Color.fromARGB(200,159, 185, 211) , size: 32,),
-                        Text(
+                        const Text(
                           "\$",
                           style: TextStyle(
                             fontSize: 24,
@@ -65,10 +64,10 @@ class _DashboardState extends State<Dashboard> {
                             color: Color.fromRGBO(255, 255, 255, 0.8),
                           ),
                         ),
-                        SizedBox(width: 4),
+                        const SizedBox(width: 4),
                         Text(
                           expenseController.monthlySpend.toStringAsFixed(2),
-                          style: TextStyle(
+                          style: const TextStyle(
                             height: 1.0,
                             fontSize: 40,
                             fontWeight: FontWeight.w800,
@@ -86,7 +85,7 @@ class _DashboardState extends State<Dashboard> {
                         vertical: 8,
                       ),
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(20, 255, 255, 255),
+                        color: const Color.fromARGB(20, 255, 255, 255),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Row(
@@ -101,10 +100,10 @@ class _DashboardState extends State<Dashboard> {
                                 : Colors.redAccent,
                             size: 25,
                           ),
-                          SizedBox(width: 8),
+                          const SizedBox(width: 8),
                           Text(
                             "${expenseController.spendPersantageChange.toStringAsFixed(0)}% ${expenseController.isSpendingLess ? 'less' : 'more'} then last month",
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color.fromARGB(200, 255, 255, 255),
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
@@ -118,9 +117,9 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
           ),
-          SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+          const SizedBox(height: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -143,7 +142,7 @@ class _DashboardState extends State<Dashboard> {
               ],
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
 
           Padding(
             padding: const EdgeInsets.only(left: 20),
@@ -179,8 +178,8 @@ class _DashboardState extends State<Dashboard> {
 
           const SizedBox(height: 15),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

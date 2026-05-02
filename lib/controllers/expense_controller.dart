@@ -7,17 +7,17 @@ class ExpenseController extends ChangeNotifier {
   final ExpenseService _expenseService = ExpenseService();
 
   List<Expense> _expenses = [];
-  bool _isLoading = false;
+  // bool _isLoading = false;
 
   List<Expense> get expenses => _expenses;
 
   Future<void> loadExpenses() async {
-    _isLoading = true;
+    // _isLoading = true;
     notifyListeners();
 
     _expenses = await _expenseService.getAllExpenses();
 
-    _isLoading = false;
+    // _isLoading = false;
     notifyListeners();
   }
 
