@@ -22,10 +22,10 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(246, 250, 255, 1),
+      backgroundColor: Theme.of(context).colorScheme.surface,
 
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF6FAFF),
+        backgroundColor: Theme.of(context).colorScheme.surface,
         title: const Text(
           "The Fluid Accountant",
           style: TextStyle(fontWeight: FontWeight.w700),
@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
         actions: [
           IconButton(
             onPressed: () => debugPrint("somthing"),
-            icon: const Icon(Icons.settings, color: Color(0xFF171C20)),
+            icon: Icon(Icons.settings, color: Theme.of(context).colorScheme.onSurface),
           ),
         ],
       ),
@@ -47,19 +47,19 @@ class _MainScreenState extends State<MainScreen> {
       floatingActionButton: Container(
         width: 65,
         height: 65,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           shape: BoxShape.circle,
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 31, 48, 64),
-              Color.fromARGB(255, 72, 105, 117),
+              Theme.of(context).colorScheme.primaryContainer,
+              Theme.of(context).colorScheme.secondaryContainer,
             ],
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black26,
+              color: Theme.of(context).colorScheme.shadow,
               blurRadius: 15,
-              offset: Offset(0, 8),
+              offset: const Offset(0, 8),
             ),
           ],
         ),
@@ -75,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           shape: const CircleBorder(),
-          child: const Icon(Icons.add, color: Colors.white, size: 32),
+          child: Icon(Icons.add, color: Theme.of(context).colorScheme.surface, size: 32),
         ),
       ),
 
@@ -87,8 +87,8 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-        selectedItemColor: const Color.fromRGBO(50, 74, 95, 1),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         selectedLabelStyle: const TextStyle(

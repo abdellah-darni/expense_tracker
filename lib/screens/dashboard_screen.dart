@@ -16,7 +16,7 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     final expenseController = context.watch<ExpenseController>();
     return Scaffold(
-      backgroundColor: const Color(0xFFF6FAFF),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Column(
         children: [
           const SizedBox(height: 20),
@@ -26,12 +26,12 @@ class _DashboardState extends State<Dashboard> {
               width: double.infinity,
               height: 200,
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
+                gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color.fromARGB(255, 31, 48, 64),
-                    Color.fromARGB(255, 72, 105, 117),
+                    Theme.of(context).colorScheme.primaryContainer,
+                    Theme.of(context).colorScheme.secondaryContainer,
                   ],
                 ),
                 borderRadius: BorderRadius.circular(40),
@@ -42,10 +42,10 @@ class _DashboardState extends State<Dashboard> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       "MONTHLY SPENDING",
                       style: TextStyle(
-                        color: Color.fromARGB(200, 159, 185, 211),
+                        color: Theme.of(context).colorScheme.tertiary,
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
                         wordSpacing: 1.2,
@@ -56,12 +56,12 @@ class _DashboardState extends State<Dashboard> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         // Icon(Icons.attach_money, color: Color.fromARGB(200,159, 185, 211) , size: 32,),
-                        const Text(
+                        Text(
                           "\$",
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(255, 255, 255, 0.8),
+                            color: Theme.of(context).colorScheme.surface,
                           ),
                         ),
                         const SizedBox(width: 4),
@@ -85,7 +85,7 @@ class _DashboardState extends State<Dashboard> {
                         vertical: 8,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(20, 255, 255, 255),
+                        color: const Color(0x13FFFFFF),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Row(
@@ -103,8 +103,8 @@ class _DashboardState extends State<Dashboard> {
                           const SizedBox(width: 8),
                           Text(
                             "${expenseController.spendPersantageChange.toStringAsFixed(0)}% ${expenseController.isSpendingLess ? 'less' : 'more'} then last month",
-                            style: const TextStyle(
-                              color: Color.fromARGB(200, 255, 255, 255),
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.surface,
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
                             ),
@@ -118,8 +118,8 @@ class _DashboardState extends State<Dashboard> {
             ),
           ),
           const SizedBox(height: 20),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -128,14 +128,14 @@ class _DashboardState extends State<Dashboard> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    color: Color.fromRGBO(23, 28, 32, 1),
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 Text(
                   "See Insghts",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 50, 74, 95),
+                    color: Theme.of(context).colorScheme.primary,
                     fontSize: 14,
                   ),
                 ),
@@ -178,8 +178,8 @@ class _DashboardState extends State<Dashboard> {
 
           const SizedBox(height: 15),
 
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -188,14 +188,14 @@ class _DashboardState extends State<Dashboard> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    color: Color.fromRGBO(23, 28, 32, 1),
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 Text(
                   "Last 7 Days",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF43474C),
+                    color: Theme.of(context).colorScheme.onTertiary,
                     fontSize: 12,
                   ),
                 ),

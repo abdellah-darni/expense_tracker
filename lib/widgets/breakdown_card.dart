@@ -21,7 +21,7 @@ class BreakdownCard extends StatelessWidget {
       margin: const EdgeInsets.only(right: 16),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(240, 244, 249, 1),
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(30),
       ),
       child: Column(
@@ -39,18 +39,18 @@ class BreakdownCard extends StatelessWidget {
 
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 12,
-              color: Color.fromRGBO(67, 71, 76, 1),
+              color: Theme.of(context).colorScheme.onTertiary,
               fontWeight: FontWeight.w600,
             ),
           ),
           Text(
             "${(persentage * 100).toStringAsFixed(0)}%",
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF171C20),
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
 

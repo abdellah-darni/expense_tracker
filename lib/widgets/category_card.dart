@@ -23,11 +23,11 @@ class CategoryCard extends StatelessWidget {
         height: 100,
         margin: const EdgeInsets.only(right: 12),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF97F6C7) : Colors.white,
+          color: isSelected ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
+              color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.05),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -40,16 +40,16 @@ class CategoryCard extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: isSelected
-                    ? Colors.white.withValues(alpha: 0.5)
-                    : Colors.white.withValues(alpha: 0.4),
+                    ? Theme.of(context).colorScheme.surface.withValues(alpha: 0.5)
+                    : Theme.of(context).colorScheme.surface.withValues(alpha: 0.4),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Icon(
                 icon,
                 size: 30,
                 color: isSelected
-                    ? const Color(0xFF00734F)
-                    : const Color(0xFF171C20),
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.onSurface,
               ),
             ),
             const SizedBox(height: 12),
@@ -59,8 +59,8 @@ class CategoryCard extends StatelessWidget {
                 fontSize: 13,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
                 color: isSelected
-                    ? const Color(0xFF00734F)
-                    : const Color(0xFF171C20),
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.onSurface,
               ),
             ),
           ],

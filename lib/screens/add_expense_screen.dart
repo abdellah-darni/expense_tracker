@@ -77,11 +77,11 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Add Expense",
           style: TextStyle(
             fontWeight: FontWeight.w800,
-            color: Color(0xFF171C20),
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
 
@@ -120,7 +120,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
             ),
           ),
         ],
-        backgroundColor: const Color(0xFFF6FAFF),
+        backgroundColor: Theme.of(context).colorScheme.surface,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -137,7 +137,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               SizedBox(
                 // width: 200,
                 child: TextField(
-                  cursorColor: Colors.black,
+                  cursorColor: Theme.of(context).colorScheme.shadow,
                   keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
                   ),
@@ -172,8 +172,8 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               ),
 
               const SizedBox(height: 20),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -182,7 +182,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.2,
-                      color: Color(0xFF43474C),
+                      color: Theme.of(context).colorScheme.onTertiary,
                     ),
                   ),
                 ),
@@ -193,14 +193,14 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   controller: _descriptionController,
                   textCapitalization: TextCapitalization.sentences,
                   keyboardType: TextInputType.text,
-                  style: const TextStyle(fontSize: 16, color: Colors.black),
+                  style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.shadow),
                   decoration: InputDecoration(
                     hintText: "What did you buy?",
                     hintStyle: TextStyle(
                       color: Colors.grey.withValues(alpha: 0.4),
                     ),
                     filled: true,
-                    fillColor: const Color(0xFFF0F4F9),
+                    fillColor: Theme.of(context).colorScheme.surface,
 
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -214,13 +214,13 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       "CATEGORY",
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1.2,
-                        color: Color(0xFF43474C),
+                        color: Theme.of(context).colorScheme.onTertiary,
                       ),
                     ),
                     TextButton(
@@ -258,8 +258,8 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 ),
               ),
 
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 12),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -268,7 +268,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.2,
-                      color: Color(0xFF43474C),
+                      color: Theme.of(context).colorScheme.onTertiary,
                     ),
                   ),
                 ),
@@ -283,7 +283,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   height: 55,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF0F4F9),
+                    color: Theme.of(context).colorScheme.surface,
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Row(
@@ -298,16 +298,16 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                       Expanded(
                         child: Text(
                           "${_selectedDate.month}/${_selectedDate.day}/${_selectedDate.year}",
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
-                            color: Colors.black87,
+                            color: Theme.of(context).colorScheme.shadow,
                           ),
                         ),
                       ),
 
                       Icon(
                         Icons.calendar_month,
-                        color: Colors.black87.withValues(alpha: 0.8),
+                        color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.8),
                         size: 20,
                       ),
                     ],
@@ -316,7 +316,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               ),
 
               const SizedBox(height: 20),
-              const Align(
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "PAYMENT METHOD",
@@ -324,7 +324,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.2,
-                    color: Color(0xFF43474C),
+                    color: Theme.of(context).colorScheme.onTertiary,
                   ),
                 ),
               ),
@@ -334,7 +334,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 initialValue: _selectedPayment,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: const Color(0xFFF0F4F9),
+                  fillColor: Theme.of(context).colorScheme.surface,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: BorderSide.none,
@@ -365,7 +365,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               ),
 
               const SizedBox(height: 20),
-              const Align(
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "ADD A NOTE",
@@ -373,7 +373,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.2,
-                    color: Color(0xFF43474C),
+                    color: Theme.of(context).colorScheme.onTertiary,
                   ),
                 ),
               ),
@@ -384,14 +384,14 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 controller: _noteController,
                 maxLines: 1,
                 textCapitalization: TextCapitalization.sentences,
-                style: const TextStyle(color: Colors.black87),
+                style: TextStyle(color: Theme.of(context).colorScheme.shadow),
                 decoration: InputDecoration(
                   hintText: "Additional details or receipt notes...",
                   hintStyle: TextStyle(
                     color: Colors.grey.withValues(alpha: 0.4),
                   ),
                   filled: true,
-                  fillColor: const Color(0xFFF0F4F9),
+                  fillColor: Theme.of(context).colorScheme.surface,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: BorderSide.none,
@@ -406,17 +406,17 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 height: 55,
                 child: ElevatedButton.icon(
                   onPressed: _saveExpense,
-                  icon: const Icon(Icons.check_circle, color: Colors.white),
-                  label: const Text(
+                  icon: Icon(Icons.check_circle, color: Theme.of(context).colorScheme.surface),
+                  label: Text(
                     "Save Expense",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.surface,
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF324A5F),
+                    backgroundColor: Theme.of(context).colorScheme.primary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),

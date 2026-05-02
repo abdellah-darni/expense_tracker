@@ -1,9 +1,9 @@
 import 'package:expense_tracker/controllers/expense_controller.dart';
 import 'package:expense_tracker/helper/database_helper.dart';
 import 'package:expense_tracker/screens/main_screen.dart';
+import 'package:expense_tracker/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,10 +30,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        textTheme: GoogleFonts.interTextTheme(),
-        scaffoldBackgroundColor: const Color(0xFFF6FAFF),
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: BlueTheme.light,
+      darkTheme: BlueTheme.dark,
+      themeMode: ThemeMode.system,
       home: const MainScreen(),
     );
   }

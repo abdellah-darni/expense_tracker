@@ -22,7 +22,7 @@ class TransactionTile extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(24),
       ),
       child: Row(
@@ -30,7 +30,7 @@ class TransactionTile extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: const Color.fromRGBO(240, 244, 249, 1),
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(16),
             ),
             child: Icon(icon, color: color),
@@ -42,19 +42,19 @@ class TransactionTile extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                    color: Color.fromRGBO(23, 28, 32, 1),
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   subtitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 12,
-                    color: Color.fromRGBO(67, 71, 76, 1),
+                    color: Theme.of(context).colorScheme.onTertiary,
                   ),
                 ),
               ],
@@ -62,10 +62,10 @@ class TransactionTile extends StatelessWidget {
           ),
           Text(
             "-\$${amount.toStringAsFixed(2)}",
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
-              color: Color(0xFF171C20),
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ],
