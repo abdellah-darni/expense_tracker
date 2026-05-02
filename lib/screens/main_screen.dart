@@ -11,7 +11,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   int _selectedIndex = 0;
   final List<Widget> _pages = [
     const Dashboard(),
@@ -19,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
     const Center(child: Text("Stats Screen Coming Soon")),
     const Center(child: Text("Profile Screen Coming Soon")),
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,21 +28,17 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor: const Color(0xFFF6FAFF),
         title: const Text(
           "The Fluid Accountant",
-          style: TextStyle(
-              fontWeight: FontWeight.w700,
-          ),
+          style: TextStyle(fontWeight: FontWeight.w700),
         ),
         leading: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: CircleAvatar(
-            backgroundImage: AssetImage("assets/avatar.jpg"),
-          ),
+          child: CircleAvatar(backgroundImage: AssetImage("assets/avatar.jpg")),
         ),
         actions: [
           IconButton(
             onPressed: () => print("somthing"),
-            icon: const Icon(Icons.settings, color: Color(0xFF171C20),)
-            )
+            icon: const Icon(Icons.settings, color: Color(0xFF171C20)),
+          ),
         ],
       ),
 
@@ -55,27 +50,30 @@ class _MainScreenState extends State<MainScreen> {
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           gradient: LinearGradient(
-            colors: [Color.fromARGB(255, 31, 48, 64), Color.fromARGB(255, 72, 105, 117)]
+            colors: [
+              Color.fromARGB(255, 31, 48, 64),
+              Color.fromARGB(255, 72, 105, 117),
+            ],
           ),
           boxShadow: [
             BoxShadow(
               color: Colors.black26,
               blurRadius: 15,
-              offset: Offset(0, 8)
-            )
-          ]
+              offset: Offset(0, 8),
+            ),
+          ],
         ),
         child: FloatingActionButton(
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AddExpenseScreen())
+              MaterialPageRoute(builder: (context) => const AddExpenseScreen()),
             );
           },
           backgroundColor: Colors.transparent,
           elevation: 0,
           shape: const CircleBorder(),
-          child: Icon(Icons.add, color: Colors.white, size: 32,),
+          child: Icon(Icons.add, color: Colors.white, size: 32),
         ),
       ),
 
@@ -97,16 +95,24 @@ class _MainScreenState extends State<MainScreen> {
         ),
         unselectedLabelStyle: const TextStyle(
           fontWeight: FontWeight.normal,
-          fontSize: 10
+          fontSize: 10,
         ),
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.grid_view), label: "DASHBOARD"),
-          BottomNavigationBarItem(icon: Icon(Icons.receipt_long), label: "HISTORY"),
-          BottomNavigationBarItem(icon: Icon(Icons.leaderboard), label: "STATS"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.grid_view),
+            label: "DASHBOARD",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.receipt_long),
+            label: "HISTORY",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.leaderboard),
+            label: "STATS",
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "PROFILE"),
         ],
       ),
-
     );
   }
 }

@@ -22,7 +22,7 @@ class Expense {
     this.isDeleted = false,
   });
 
-  Map<String, dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     return {
       'id': id,
       'amount': amount,
@@ -37,15 +37,16 @@ class Expense {
 
   factory Expense.fromMap(Map<String, dynamic> map) {
     return Expense(
-        id: map['id'] as String,
-        amount: map['amount'] as double,
-        description: map['description'] as String,
-        category: ExpenseCategory.values.byName(map['category'] as String),
-        date: DateTime.parse(map['date'] as String),
-        paymentMethod: PaymentMethod.values.byName(map['paymentMethod'] as String),
-        note: map['note'] as String,
-        isDeleted: map['isDeleted'] == 1,
+      id: map['id'] as String,
+      amount: map['amount'] as double,
+      description: map['description'] as String,
+      category: ExpenseCategory.values.byName(map['category'] as String),
+      date: DateTime.parse(map['date'] as String),
+      paymentMethod: PaymentMethod.values.byName(
+        map['paymentMethod'] as String,
+      ),
+      note: map['note'] as String,
+      isDeleted: map['isDeleted'] == 1,
     );
   }
-
 }

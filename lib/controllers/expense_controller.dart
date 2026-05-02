@@ -30,8 +30,8 @@ class ExpenseController extends ChangeNotifier {
   double get monthlySpend {
     final now = DateTime.now();
     return _expenses
-    .where((e) => e.date.month == now.month && e.date.year == now.year)
-    .fold(0.0, (sum, item) => sum + item.amount); 
+        .where((e) => e.date.month == now.month && e.date.year == now.year)
+        .fold(0.0, (sum, item) => sum + item.amount);
   }
 
   double get _previousMonthSpend {
@@ -41,8 +41,10 @@ class ExpenseController extends ChangeNotifier {
     final previousYear = now.month == 1 ? now.year - 1 : now.year;
 
     return _expenses
-      .where((e) => e.date.month == previousMonth && e.date.year == previousYear)
-      .fold(0.0, (sum, item) => sum + item.amount);
+        .where(
+          (e) => e.date.month == previousMonth && e.date.year == previousYear,
+        )
+        .fold(0.0, (sum, item) => sum + item.amount);
   }
 
   double get spendPersantageChange {
@@ -64,13 +66,17 @@ class ExpenseController extends ChangeNotifier {
     final now = DateTime.now();
     Map<ExpenseCategory, double> totalsPerGategory = {};
 
-    final thisMonthExpense = _expenses.where((e) => e.date.month == now.month && e.date.year == now.year);
+    final thisMonthExpense = _expenses.where(
+      (e) => e.date.month == now.month && e.date.year == now.year,
+    );
 
-    for (var expense in thisMonthExpense){
-      totalsPerGategory[expense.category] = (totalsPerGategory[expense.category] ?? 0) + expense.amount;
+    for (var expense in thisMonthExpense) {
+      totalsPerGategory[expense.category] =
+          (totalsPerGategory[expense.category] ?? 0) + expense.amount;
     }
 
-    var sortedMap = totalsPerGategory.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
+    var sortedMap = totalsPerGategory.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
 
     return Map.fromEntries(sortedMap);
   }
@@ -80,7 +86,8 @@ class ExpenseController extends ChangeNotifier {
     final evenDaysAgo = now.subtract(const Duration(days: 7));
 
     var recentList = _expenses.where((e) {
-      return e.date.isAfter(evenDaysAgo) || e.date.isAtSameMomentAs(evenDaysAgo);
+      return e.date.isAfter(evenDaysAgo) ||
+          e.date.isAtSameMomentAs(evenDaysAgo);
     }).toList();
 
     recentList.sort((a, b) => b.date.compareTo(a.date));

@@ -11,7 +11,7 @@ class BreakdownCard extends StatelessWidget {
     required this.title,
     required this.persentage,
     required this.icon,
-    required this.color
+    required this.color,
   });
 
   @override
@@ -33,7 +33,7 @@ class BreakdownCard extends StatelessWidget {
               color: color.withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(icon, color: color, size: 24,),
+            child: Icon(icon, color: color, size: 24),
           ),
           Spacer(),
 
@@ -41,27 +41,27 @@ class BreakdownCard extends StatelessWidget {
             title,
             style: const TextStyle(
               fontSize: 12,
-              color: Color.fromRGBO(67, 71, 76, 1), 
-              fontWeight: FontWeight.w600
+              color: Color.fromRGBO(67, 71, 76, 1),
+              fontWeight: FontWeight.w600,
             ),
           ),
           Text(
             "${(persentage * 100).toStringAsFixed(0)}%",
             style: const TextStyle(
-              fontSize: 18, 
-              fontWeight: FontWeight.bold, 
-              color: Color(0xFF171C20)
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF171C20),
             ),
           ),
 
-          const SizedBox(height: 8,),
+          const SizedBox(height: 8),
 
           LinearProgressIndicator(
             value: persentage,
             backgroundColor: Colors.grey.shade300,
             valueColor: AlwaysStoppedAnimation<Color>(color),
             borderRadius: BorderRadius.circular(10),
-          )
+          ),
         ],
       ),
     );

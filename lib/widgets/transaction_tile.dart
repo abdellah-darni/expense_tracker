@@ -13,7 +13,7 @@ class TransactionTile extends StatelessWidget {
     required this.subtitle,
     required this.amount,
     required this.icon,
-    required this.color
+    required this.color,
   });
 
   @override
@@ -33,7 +33,7 @@ class TransactionTile extends StatelessWidget {
               color: const Color.fromRGBO(240, 244, 249, 1),
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Icon(icon, color: color,),
+            child: Icon(icon, color: color),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -52,14 +52,21 @@ class TransactionTile extends StatelessWidget {
                 ),
                 Text(
                   subtitle,
-                  style: const TextStyle(fontSize: 12, color: Color.fromRGBO(67, 71, 76, 1)),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Color.fromRGBO(67, 71, 76, 1),
+                  ),
                 ),
               ],
-            )
+            ),
           ),
           Text(
             "-\$${amount.toStringAsFixed(2)}",
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF171C20)),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: Color(0xFF171C20),
+            ),
           ),
         ],
       ),

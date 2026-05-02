@@ -1,6 +1,1 @@
-enum PaymentMethod {
-  cash,
-  creditCard,
-  debitCard,
-  bankTransfer
-}
+enum PaymentMethod { cash, creditCard, debitCard, bankTransfer }

@@ -21,8 +21,8 @@ Future<void> main() async {
   runApp(
     ChangeNotifierProvider(
       create: (context) => ExpenseController()..loadExpenses(),
-      child: const MyApp()
-    )
+      child: const MyApp(),
+    ),
   );
 }
 
@@ -32,12 +32,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp( 
+    return MaterialApp(
       theme: ThemeData(
         textTheme: GoogleFonts.interTextTheme(),
         scaffoldBackgroundColor: const Color(0xFFF6FAFF),
       ),
-      home: MainScreen()
-      );
-    }
+      home: MainScreen(),
+    );
+  }
 }

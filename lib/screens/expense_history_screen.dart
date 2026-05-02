@@ -7,10 +7,9 @@ class ExpenseHistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ExpenseController expenseController = context.watch<ExpenseController>();
-    
-    return Column(
-      
-    );
+    final ExpenseController expenseController = context
+        .watch<ExpenseController>();
+
+    return Column();
   }
 }
