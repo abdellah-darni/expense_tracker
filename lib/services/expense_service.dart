@@ -1,10 +1,9 @@
 import 'package:expense_tracker/helper/database_helper.dart';
+import 'package:expense_tracker/models/expense.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../models/expense.dart';
-
 class ExpenseService {
-  Future<Database> get _db async => await DatabaseHelper.instance.database;
+  Future<Database> get _db async => DatabaseHelper.instance.database;
 
   Future<void> insertExpense(Expense expense) async {
     final db = await _db;
@@ -26,7 +25,7 @@ class ExpenseService {
       orderBy: 'date DESC',
     );
 
-    return expensesMap.map((map) => Expense.fromMap(map)).toList();
+    return expensesMap.map(Expense.fromMap).toList();
   }
 
   Future<void> softDeleteExpense(String id) async {

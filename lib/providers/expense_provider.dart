@@ -8,7 +8,7 @@ class ExpenseProvider extends AsyncNotifier<List<Expense>> {
 
   @override
   Future<List<Expense>> build() async {
-    return await _expenseService.getAllExpenses();
+    return _expenseService.getAllExpenses();
   }
 
   Future<void> addExpense(Expense newExpense) async {
@@ -16,25 +16,26 @@ class ExpenseProvider extends AsyncNotifier<List<Expense>> {
     final currentList = state.value ?? [];
     state = AsyncData([newExpense, ...currentList]);
   }
-
 }
 
-final expenseProvider = AsyncNotifierProvider<ExpenseProvider, List<Expense>>(() {
-  return ExpenseProvider();
-});
+final expenseProvider = AsyncNotifierProvider<ExpenseProvider, List<Expense>>(
+  () {
+    return ExpenseProvider();
+  },
+);
 
 // --- DERIVED PROVIDERS (Replacing your old Getters) ---
 
 // Replaces: get monthlySpend
 final monthlySpendProvider = Provider<double>((ref) {
-  // 1. Watch the main list. 
+  // 1. Watch the main list.
   // .valueOrNull safely unwraps the AsyncNotifier data
   final expenses = ref.watch(expenseProvider).value ?? [];
   final now = DateTime.now();
-  
+
   return expenses
       .where((e) => e.date.month == now.month && e.date.year == now.year)
-      .fold(0.0, (sum, item) => sum + item.amount);
+      .fold(0, (sum, item) => sum + item.amount);
 });
 
 // Replaces: get _previousMonthSpend
@@ -45,8 +46,10 @@ final previousMonthSpendProvider = Provider<double>((ref) {
   final previousYear = now.month == 1 ? now.year - 1 : now.year;
 
   return expenses
-      .where((e) => e.date.month == previousMonth && e.date.year == previousYear)
-      .fold(0.0, (sum, item) => sum + item.amount);
+      .where(
+        (e) => e.date.month == previousMonth && e.date.year == previousYear,
+      )
+      .fold(0, (sum, item) => sum + item.amount);
 });
 
 // Replaces: get spendPersantageChange
@@ -67,20 +70,22 @@ final isSpendingLessProvider = Provider<bool>((ref) {
 });
 
 // Replaces: get monthlyCategorySpending
-final monthlyCategorySpendingProvider = Provider<Map<ExpenseCategory, double>>((ref) {
+final monthlyCategorySpendingProvider = Provider<Map<ExpenseCategory, double>>((
+  ref,
+) {
   final expenses = ref.watch(expenseProvider).value ?? [];
   final now = DateTime.now();
-  Map<ExpenseCategory, double> totals = {};
+  final totals = <ExpenseCategory, double>{};
 
   final thisMonthExpenses = expenses.where(
     (e) => e.date.month == now.month && e.date.year == now.year,
   );
 
-  for (var expense in thisMonthExpenses) {
+  for (final expense in thisMonthExpenses) {
     totals[expense.category] = (totals[expense.category] ?? 0) + expense.amount;
   }
 
-  var sortedMap = totals.entries.toList()
+  final sortedMap = totals.entries.toList()
     ..sort((a, b) => b.value.compareTo(a.value));
 
   return Map.fromEntries(sortedMap);
@@ -92,10 +97,9 @@ final recentActivityProvider = Provider<List<Expense>>((ref) {
   final now = DateTime.now();
   final sevenDaysAgo = now.subtract(const Duration(days: 7));
 
-  var recentList = expenses.where((e) {
-    return e.date.isAfter(sevenDaysAgo) || e.date.isAtSameMomentAs(sevenDaysAgo);
-  }).toList();
-
-  recentList.sort((a, b) => b.date.compareTo(a.date));
+  final recentList = expenses.where((e) {
+    return e.date.isAfter(sevenDaysAgo) ||
+        e.date.isAtSameMomentAs(sevenDaysAgo);
+  }).toList()..sort((a, b) => b.date.compareTo(a.date));
   return recentList.take(2).toList();
 });

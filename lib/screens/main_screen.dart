@@ -15,8 +15,8 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _pages = [
     const Dashboard(),
     const ExpenseHistoryScreen(),
-    const Center(child: Text("Stats Screen Coming Soon")),
-    const Center(child: Text("Profile Screen Coming Soon")),
+    const Center(child: Text('Stats Screen Coming Soon')),
+    const Center(child: Text('Profile Screen Coming Soon')),
   ];
 
   @override
@@ -27,16 +27,16 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
         title: const Text(
-          "The Fluid Accountant",
+          'The Fluid Accountant',
           style: TextStyle(fontWeight: FontWeight.w700),
         ),
         leading: const Padding(
-          padding: EdgeInsets.all(10.0),
-          child: CircleAvatar(backgroundImage: AssetImage("assets/avatar.jpg")),
+          padding: EdgeInsets.all(10),
+          child: CircleAvatar(backgroundImage: AssetImage('assets/avatar.jpg')),
         ),
         actions: [
           IconButton(
-            onPressed: () => debugPrint("somthing"),
+            onPressed: () => debugPrint('somthing'),
             icon: Icon(
               Icons.settings,
               color: Theme.of(context).colorScheme.onSurface,
@@ -67,8 +67,8 @@ class _MainScreenState extends State<MainScreen> {
           ],
         ),
         child: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
+          onPressed: () async {
+            await Navigator.push(
               context,
               MaterialPageRoute<dynamic>(
                 builder: (context) => const AddExpenseScreen(),
@@ -109,17 +109,17 @@ class _MainScreenState extends State<MainScreen> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.grid_view),
-            label: "DASHBOARD",
+            label: 'DASHBOARD',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.receipt_long),
-            label: "HISTORY",
+            label: 'HISTORY',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.leaderboard),
-            label: "STATS",
+            label: 'STATS',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "PROFILE"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'PROFILE'),
         ],
       ),
     );

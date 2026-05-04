@@ -1,12 +1,11 @@
-import 'package:expense_tracker/providers/expense_provider.dart'; 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:expense_tracker/enums/expense_category.dart';
 import 'package:expense_tracker/enums/payment_method.dart';
 import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/providers/expense_provider.dart';
 import 'package:expense_tracker/widgets/category_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
 class AddExpenseScreen extends ConsumerStatefulWidget {
@@ -36,8 +35,8 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
 
   DateTime _selectedDate = DateTime.now();
 
-  void _presentDatePicker() async {
-    final DateTime? pickedDate = await showDatePicker(
+  Future<void> _presentDatePicker() async {
+    final pickedDate = await showDatePicker(
       context: context,
       initialDate: _selectedDate,
       firstDate: DateTime(2020),
@@ -51,7 +50,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
     }
   }
 
-  void _saveExpense() {
+  Future<void> _saveExpense() async {
     final enterdAmount = double.tryParse(_amountController.text) ?? 0.0;
     final enterdDesciption = _descriptionController.text;
 
@@ -69,7 +68,9 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
       note: _noteController.text.isEmpty ? null : _noteController.text,
     );
 
-    ref.read(expenseProvider.notifier).addExpense(newExpense);
+    await ref.read(expenseProvider.notifier).addExpense(newExpense);
+
+    if (!mounted) return;
 
     Navigator.pop(context);
   }
@@ -79,7 +80,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Add Expense",
+          'Add Expense',
           style: TextStyle(
             fontWeight: FontWeight.w800,
             color: Theme.of(context).colorScheme.onSurface,
@@ -95,22 +96,22 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
 
         actions: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8),
             child: IconButton(
               icon: const Icon(Icons.help),
-              onPressed: () {
-                showDialog(
+              onPressed: () async {
+                await showDialog<void>(
                   context: context,
-                  builder: (BuildContext context) {
+                  builder: (context) {
                     return AlertDialog(
-                      title: const Text("A popup"),
+                      title: const Text('A popup'),
                       content: const Text(
                         "I just want to add a popup i didn't think much of the content.",
                       ),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: const Text("Got it!"),
+                          child: const Text('Got it!'),
                         ),
                       ],
                     );
@@ -130,7 +131,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
               const SizedBox(height: 12),
               const Center(
                 child: Text(
-                  "AMOUNT",
+                  'AMOUNT',
                   style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12),
                 ),
               ),
@@ -148,7 +149,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                   textAlignVertical: TextAlignVertical.center,
                   style: const TextStyle(fontSize: 25),
                   decoration: InputDecoration(
-                    hintText: "0.00",
+                    hintText: '0.00',
                     hintStyle: TextStyle(
                       color: Colors.grey.withValues(alpha: 0.4),
                     ),
@@ -176,7 +177,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "DESCRIPTION",
+                    'DESCRIPTION',
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -197,7 +198,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                     color: Theme.of(context).colorScheme.shadow,
                   ),
                   decoration: InputDecoration(
-                    hintText: "What did you buy?",
+                    hintText: 'What did you buy?',
                     hintStyle: TextStyle(
                       color: Colors.grey.withValues(alpha: 0.4),
                     ),
@@ -212,12 +213,12 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 0.0),
+                padding: EdgeInsets.zero,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "CATEGORY",
+                      'CATEGORY',
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
@@ -228,7 +229,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                     TextButton(
                       onPressed: () {},
                       child: const Text(
-                        "View All",
+                        'View All',
                         style: TextStyle(fontSize: 12, color: Colors.grey),
                       ),
                     ),
@@ -241,7 +242,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: ExpenseCategory.values.map((category) {
-                    String labelName =
+                    final labelName =
                         category.name[0].toUpperCase() +
                         category.name.substring(1);
 
@@ -264,7 +265,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "DATE",
+                    'DATE',
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -298,7 +299,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
 
                       Expanded(
                         child: Text(
-                          "${_selectedDate.month}/${_selectedDate.day}/${_selectedDate.year}",
+                          '${_selectedDate.month}/${_selectedDate.day}/${_selectedDate.year}',
                           style: TextStyle(
                             fontSize: 16,
                             color: Theme.of(context).colorScheme.shadow,
@@ -322,7 +323,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "PAYMENT METHOD",
+                  'PAYMENT METHOD',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
@@ -351,7 +352,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                 icon: const Icon(Icons.keyboard_arrow_down),
 
                 items: PaymentMethod.values.map((method) {
-                  String lableName =
+                  final lableName =
                       method.name[0].toUpperCase() + method.name.substring(1);
                   return DropdownMenuItem(
                     value: method,
@@ -371,7 +372,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "ADD A NOTE",
+                  'ADD A NOTE',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
@@ -385,11 +386,10 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
 
               TextField(
                 controller: _noteController,
-                maxLines: 1,
                 textCapitalization: TextCapitalization.sentences,
                 style: TextStyle(color: Theme.of(context).colorScheme.shadow),
                 decoration: InputDecoration(
-                  hintText: "Additional details or receipt notes...",
+                  hintText: 'Additional details or receipt notes...',
                   hintStyle: TextStyle(
                     color: Colors.grey.withValues(alpha: 0.4),
                   ),
@@ -414,7 +414,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                     color: Theme.of(context).colorScheme.surface,
                   ),
                   label: Text(
-                    "Save Expense",
+                    'Save Expense',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

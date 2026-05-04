@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
 class BreakdownCard extends StatelessWidget {
-  final String title;
-  final double persentage;
-  final IconData icon;
-  final Color color;
-
   const BreakdownCard({
-    super.key,
     required this.title,
     required this.persentage,
     required this.icon,
     required this.color,
+    super.key,
   });
+  final String title;
+  final double persentage;
+  final IconData icon;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +45,7 @@ class BreakdownCard extends StatelessWidget {
             ),
           ),
           Text(
-            "${(persentage * 100).toStringAsFixed(0)}%",
+            '${(persentage * 100).toStringAsFixed(0)}%',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,

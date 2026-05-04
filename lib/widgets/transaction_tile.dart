@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 
 class TransactionTile extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final double amount;
-  final IconData icon;
-  final Color color;
-
   const TransactionTile({
-    super.key,
     required this.title,
     required this.subtitle,
     required this.amount,
     required this.icon,
     required this.color,
+    super.key,
   });
+  final String title;
+  final String subtitle;
+  final double amount;
+  final IconData icon;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +60,7 @@ class TransactionTile extends StatelessWidget {
             ),
           ),
           Text(
-            "-\$${amount.toStringAsFixed(2)}",
+            '-\$${amount.toStringAsFixed(2)}',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
