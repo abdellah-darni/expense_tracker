@@ -6,6 +6,7 @@ import 'package:expense_tracker/features/expenses/presentation/widgets/category_
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:uuid/uuid.dart';
 
 class AddExpenseScreen extends ConsumerStatefulWidget {
@@ -72,7 +73,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
 
     if (!mounted) return;
 
-    Navigator.pop(context);
+    context.pop();
   }
 
   @override

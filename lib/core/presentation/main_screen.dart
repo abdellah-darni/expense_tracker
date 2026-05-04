@@ -1,7 +1,7 @@
-import 'package:expense_tracker/features/expenses/presentation/screens/add_expense_screen.dart';
 import 'package:expense_tracker/features/expenses/presentation/screens/dashboard_screen.dart';
 import 'package:expense_tracker/features/expenses/presentation/screens/expense_history_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -68,12 +68,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
         child: FloatingActionButton(
           onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute<dynamic>(
-                builder: (context) => const AddExpenseScreen(),
-              ),
-            );
+            await context.pushNamed('addExpense');
           },
           backgroundColor: Colors.transparent,
           elevation: 0,
