@@ -1,21 +1,22 @@
-import 'package:expense_tracker/controllers/expense_controller.dart';
+import 'package:expense_tracker/providers/expense_provider.dart'; 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:expense_tracker/enums/expense_category.dart';
 import 'package:expense_tracker/enums/payment_method.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/category_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
-class AddExpenseScreen extends StatefulWidget {
+class AddExpenseScreen extends ConsumerStatefulWidget {
   const AddExpenseScreen({super.key});
 
   @override
-  State<AddExpenseScreen> createState() => _AddExpenseScreenState();
+  ConsumerState<AddExpenseScreen> createState() => _AddExpenseScreenState();
 }
 
-class _AddExpenseScreenState extends State<AddExpenseScreen> {
+class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
@@ -68,7 +69,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
       note: _noteController.text.isEmpty ? null : _noteController.text,
     );
 
-    context.read<ExpenseController>().addExpense(newExpense);
+    ref.read(expenseProvider.notifier).addExpense(newExpense);
 
     Navigator.pop(context);
   }
@@ -98,7 +99,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
             child: IconButton(
               icon: const Icon(Icons.help),
               onPressed: () {
-                // ignore: inference_failure_on_function_invocation
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -135,7 +135,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 ),
               ),
               SizedBox(
-                // width: 200,
                 child: TextField(
                   cursorColor: Theme.of(context).colorScheme.shadow,
                   keyboardType: const TextInputType.numberWithOptions(
@@ -237,7 +236,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 ),
               ),
 
-              // const SizedBox(height: 10),
               SizedBox(
                 height: 110,
                 child: ListView(
