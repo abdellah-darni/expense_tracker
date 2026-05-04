@@ -1,6 +1,6 @@
-import 'package:expense_tracker/providers/expense_provider.dart';
-import 'package:expense_tracker/widgets/breakdown_card.dart';
-import 'package:expense_tracker/widgets/transaction_tile.dart';
+import 'package:expense_tracker/features/expenses/presentation/providers/expense_provider.dart';
+import 'package:expense_tracker/features/expenses/presentation/widgets/breakdown_card.dart';
+import 'package:expense_tracker/features/expenses/presentation/widgets/transaction_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,5 +1,5 @@
-import 'package:expense_tracker/helper/database_helper.dart';
-import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/core/database/database_helper.dart';
+import 'package:expense_tracker/features/expenses/domain/expense.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ExpenseService {

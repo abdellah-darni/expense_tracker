@@ -1,8 +1,8 @@
-import 'package:expense_tracker/enums/expense_category.dart';
-import 'package:expense_tracker/enums/payment_method.dart';
-import 'package:expense_tracker/models/expense.dart';
-import 'package:expense_tracker/providers/expense_provider.dart';
-import 'package:expense_tracker/widgets/category_card.dart';
+import 'package:expense_tracker/features/expenses/domain/expense_category.dart';
+import 'package:expense_tracker/features/expenses/domain/payment_method.dart';
+import 'package:expense_tracker/features/expenses/domain/expense.dart';
+import 'package:expense_tracker/features/expenses/presentation/providers/expense_provider.dart';
+import 'package:expense_tracker/features/expenses/presentation/widgets/category_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

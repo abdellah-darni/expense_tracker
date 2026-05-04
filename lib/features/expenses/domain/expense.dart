@@ -1,5 +1,5 @@
-import 'package:expense_tracker/enums/expense_category.dart';
-import 'package:expense_tracker/enums/payment_method.dart';
+import 'package:expense_tracker/features/expenses/domain/expense_category.dart';
+import 'package:expense_tracker/features/expenses/domain/payment_method.dart';
 
 class Expense {
   Expense({

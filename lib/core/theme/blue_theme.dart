@@ -1,4 +1,4 @@
-import 'package:expense_tracker/theme/app_theme.dart';
+import 'package:expense_tracker/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class BlueTheme {
