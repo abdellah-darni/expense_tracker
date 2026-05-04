@@ -1,6 +1,6 @@
-import 'package:expense_tracker/features/expenses/domain/expense_category.dart';
-import 'package:expense_tracker/features/expenses/domain/expense.dart';
 import 'package:expense_tracker/features/expenses/data/expense_service.dart';
+import 'package:expense_tracker/features/expenses/domain/expense.dart';
+import 'package:expense_tracker/features/expenses/domain/expense_category.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ExpenseProvider extends AsyncNotifier<List<Expense>> {
